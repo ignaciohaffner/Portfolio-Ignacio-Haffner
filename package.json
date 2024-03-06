@@ -3,7 +3,6 @@
   "private": true,
   "version": "0.0.0",
   "type": "module",
-  "homepage": "http://ignaciohaffner.github.io/Portfolio-Ignacio-Haffner",
   "scripts": {
     "dev": "vite",
     "build": "vite build",
