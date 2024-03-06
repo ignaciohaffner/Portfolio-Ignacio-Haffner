@@ -24,11 +24,35 @@ const Projects = () => {
         "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quis, officiis? Sunt optio non deserunt, ea neque aliquid quis placeat voluptatum expedita. Nam eius maxime iusto nostrum blanditiis, est ad porro?",
       githublink: "",
     },
+    {
+      id: 3,
+      tittle: "adsjaoda Chart",
+      image: "https://i.imgur.com/XompTW6.png",
+      description:
+        "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quis, officiis? Sunt optio non deserunt, ea neque aliquid quis placeat voluptatum expedita. Nam eius maxime iusto nostrum blanditiis, est ad porro?",
+      githublink: "",
+    },
+    {
+      id: 4,
+      tittle: "adsjaoda Chart",
+      image: "https://i.imgur.com/XompTW6.png",
+      description:
+        "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quis, officiis? Sunt optio non deserunt, ea neque aliquid quis placeat voluptatum expedita. Nam eius maxime iusto nostrum blanditiis, est ad porro?",
+      githublink: "",
+    },
+    {
+      id: 2,
+      tittle: "adsjaoda Chart",
+      image: "https://i.imgur.com/XompTW6.png",
+      description:
+        "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quis, officiis? Sunt optio non deserunt, ea neque aliquid quis placeat voluptatum expedita. Nam eius maxime iusto nostrum blanditiis, est ad porro?",
+      githublink: "",
+    },
   ];
   const [show, setShow] = useState(false);
 
   return (
-    <div className="md:h-screen" id="projects">
+    <div className="md:h-screen mx-10" id="projects">
       <h3 className="text-6xl font-bold text-center mt-32 mb-5">PROJECTS</h3>
       <div className="flex flex-col md:flex-row justify-center gap-x-5">
         {projects.map((project) => (
