@@ -3,8 +3,11 @@ import { RiJavascriptFill } from "react-icons/ri";
 import { FaHtml5, FaCss3Alt, FaReact, FaNode } from "react-icons/fa";
 import { SiExpress, SiMysql, SiTailwindcss } from "react-icons/si";
 import { BiLogoMongodb } from "react-icons/bi";
+import { useRef } from "react";
 
 const Aboutme = () => {
+  const aboutmeRef = useRef(null);
+
   return (
     <div
       className="h-full m-5 gap-y-5 flex flex-col md:flex-row justify-center max-auto md:gap-x-5"
