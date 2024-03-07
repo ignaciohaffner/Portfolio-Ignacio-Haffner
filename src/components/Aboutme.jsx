@@ -13,11 +13,11 @@ const Aboutme = () => {
       className="h-full m-5 gap-y-5 flex flex-col md:flex-row justify-center max-auto md:gap-x-5"
       id="aboutme"
     >
-      <img
+      {/* <img
         src="https://previews.123rf.com/images/piksel/piksel1204/piksel120400015/13063145-casual-man-standing.jpg"
         alt=""
         className="md:w-1/4 border-2 p-2"
-      />
+      /> */}
       <div className="border-2 p-2 flex flex-col md:w-1/4 justify-between ">
         <p className="text-center text-4xl font-bold">About me</p>
         <div className="p-2">
