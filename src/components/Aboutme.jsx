@@ -1,98 +1,53 @@
+import { useEffect } from "react";
+import { FaLinkedin, FaGithub } from "react-icons/fa";
+import { IoMail } from "react-icons/io5";
 import { motion } from "framer-motion";
-import { RiJavascriptFill } from "react-icons/ri";
-import { FaHtml5, FaCss3Alt, FaReact, FaNode } from "react-icons/fa";
-import { SiExpress, SiMysql, SiTailwindcss } from "react-icons/si";
-import { BiLogoMongodb } from "react-icons/bi";
-import { useRef } from "react";
+import { db, doc, getDoc, setDoc, increment } from "../firebaseConfig.js";
 
-const Aboutme = () => {
-  const aboutmeRef = useRef(null);
+const Contact = () => {
+  useEffect(() => {
+    const updateVisitCount = async () => {
+      try {
+        const docRef = doc(db, "visits", "contactPage");
+        const docSnap = await getDoc(docRef);
+
+        if (docSnap.exists()) {
+          await setDoc(docRef, { count: increment(1) }, { merge: true });
+        } else {
+          await setDoc(docRef, { count: 1 });
+        }
+      } catch (error) {
+        console.error("Error updating visit count: ", error);
+      }
+    };
+
+    updateVisitCount();
+  }, []);
 
   return (
-    <div
-      className="h-full m-5 gap-y-5 flex flex-col md:flex-row justify-center max-auto md:gap-x-5"
-      id="aboutme"
-    >
-      <img
-        src="src\assets\photo.JPG"
-        alt=""
-        className="md:w-1/4 border-2 p-2 object-center object-cover"
-      />
-      <div className="border-2 p-2 flex flex-col md:w-1/4 justify-between ">
-        <p className="text-center text-4xl font-bold">About me</p>
-        <div className="p-2">
-          <p>
-            I'm an advanced student pursuing a degree in Systems Engineering. I
-            specialize in full-stack development, focusing on pragmatic
-            solutions to real-world challenges.
-          </p>
-          <p className="font-bold mt-3">🚀 Tech Stack:</p>
-          <ul className="list-disc ml-4">
-            <li>
-              💻 <span className="font-bold">Full Stack</span>: Proficient in
-              crafting dynamic front-end experiences with React and ensuring
-              robust back-end development using Node.js.
-            </li>
-            <li>
-              🛢 <span className="font-bold">Databases</span>: Well-versed in
-              both SQL and NoSQL databases, ensuring seamless data management
-              and retrieval.
-            </li>
-          </ul>
-          <p className="font-bold mt-3">🔧 Skills:</p>
-          <ul className="list-disc ml-4">
-            <li>
-              <span className="font-bold">🌐 Web Development:</span>: Adept at
-              designing functional and user-centric interfaces that bring ideas
-              to life.
-            </li>
-            <li>
-              <span className="font-bold">🚀 Continuous Learner: </span>: Always
-              eager to explore emerging technologies and adapt to the evolving
-              software development landscape
-            </li>
-            <li>
-              <span className="font-bold">🛠 Problem Solver:</span>:Equipped with
-              analytical thinking and problem-solving skills to tackle complex
-              issues.
-            </li>
-          </ul>
-        </div>
-        <div>
-          <p className="font-bold text-xl text-center mb-3">Stack</p>
-          <div className="flex gap-x-4 flex-wrap justify-center">
-            <motion.div whileHover={{ scale: 1.5 }} className="block">
-              <RiJavascriptFill className="text-6xl hover:text-yellow-300" />
-            </motion.div>
-            <motion.div whileHover={{ scale: 1.5 }} className="block">
-              <FaHtml5 className="text-6xl hover:text-orange-600" />
-            </motion.div>
-            <motion.div whileHover={{ scale: 1.5 }} className="block">
-              <FaCss3Alt className="text-6xl hover:text-blue-500" />
-            </motion.div>
-            <motion.div whileHover={{ scale: 1.5 }} className="block">
-              <FaReact className="text-6xl hover:text-blue-400" />
-            </motion.div>
-            <motion.div whileHover={{ scale: 1.5 }} className="block">
-              <FaNode className="text-6xl hover:text-green-600" />
-            </motion.div>
-            <motion.div whileHover={{ scale: 1.5 }} className="block">
-              <SiExpress className="text-6xl hover:text-yellow-300" />
-            </motion.div>
-            <motion.div whileHover={{ scale: 1.5 }} className="block">
-              <BiLogoMongodb className="text-6xl hover:text-green-800" />
-            </motion.div>
-            <motion.div whileHover={{ scale: 1.5 }} className="block">
-              <SiMysql className="text-6xl hover:text-blue-900" />
-            </motion.div>
-            <motion.div whileHover={{ scale: 1.5 }} className="block">
-              <SiTailwindcss className="text-6xl hover:text-cyan-500" />
-            </motion.div>
-          </div>
-        </div>
+    <div className="mx-5 my-32" id="contact">
+      <h3 className="text-5xl md:text-6xl font-bold text-center mt-32 mb-5">
+        CONTACT ME
+      </h3>
+      <div className="flex flex-row justify-center gap-x-5 mt-5">
+        <motion.div whileHover={{ scale: 1.5 }}>
+          <a href="https://www.linkedin.com/in/ignaciohaffner/">
+            <FaLinkedin className="text-7xl"></FaLinkedin>
+          </a>
+        </motion.div>
+        <motion.div whileHover={{ scale: 1.5 }}>
+          <a href="https://github.com/ignaciohaffner/">
+            <FaGithub className="text-7xl"></FaGithub>
+          </a>
+        </motion.div>
+        <motion.div whileHover={{ scale: 1.5 }}>
+          <a href="mailto:ignaciohaffner@gmail.com">
+            <IoMail className="text-7xl"></IoMail>
+          </a>
+        </motion.div>
       </div>
     </div>
   );
 };
 
-export default Aboutme;
+export default Contact;

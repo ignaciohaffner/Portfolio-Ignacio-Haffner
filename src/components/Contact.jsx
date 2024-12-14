@@ -1,8 +1,24 @@
+import { useEffect } from "react";
 import { FaLinkedin, FaGithub } from "react-icons/fa";
 import { IoMail } from "react-icons/io5";
 import { motion } from "framer-motion";
+import { db, doc, getDoc, setDoc, increment } from "../firebaseConfig.js";
 
 const Contact = () => {
+  useEffect(() => {
+    const updateVisitCount = async () => {
+      const docRef = doc(db, "visits", "contactPage");
+      const docSnap = await getDoc(docRef);
+      if (docSnap.exists()) {
+        await setDoc(docRef, { count: increment(1) }, { merge: true });
+      } else {
+        await setDoc(docRef, { count: 1 });
+      }
+    };
+
+    updateVisitCount();
+  }, []);
+
   return (
     <div className="mx-5 my-32" id="contact">
       <h3 className="text-5xl md:text-6xl font-bold text-center mt-32 mb-5">
@@ -11,7 +27,6 @@ const Contact = () => {
       <div className="flex flex-row justify-center gap-x-5 mt-5">
         <motion.div whileHover={{ scale: 1.5 }}>
           <a href="https://www.linkedin.com/in/ignaciohaffner/">
-            {" "}
             <FaLinkedin className="text-7xl"></FaLinkedin>
           </a>
         </motion.div>
