@@ -7,12 +7,17 @@ import { db, doc, getDoc, setDoc, increment } from "../firebaseConfig.js";
 const Contact = () => {
   useEffect(() => {
     const updateVisitCount = async () => {
-      const docRef = doc(db, "visits", "contactPage");
-      const docSnap = await getDoc(docRef);
-      if (docSnap.exists()) {
-        await setDoc(docRef, { count: increment(1) }, { merge: true });
-      } else {
-        await setDoc(docRef, { count: 1 });
+      try {
+        const docRef = doc(db, "visits", "contactPage");
+        const docSnap = await getDoc(docRef);
+
+        if (docSnap.exists()) {
+          await setDoc(docRef, { count: increment(1) }, { merge: true });
+        } else {
+          await setDoc(docRef, { count: 1 });
+        }
+      } catch (error) {
+        console.error("Error updating visit count: ", error);
       }
     };
 
