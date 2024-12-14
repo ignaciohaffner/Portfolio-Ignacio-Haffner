@@ -11,7 +11,7 @@ const Aboutme = () => {
       id="aboutme"
     >
       <img
-        src="src\assets\photo.JPG"
+        src="https://i.imgur.com/QsZjEOG.jpeg"
         alt=""
         className="md:w-1/4 border-2 p-2 object-center object-cover"
       />
