@@ -15,6 +15,15 @@ const Projects = () => {
         "https://github.com/ignaciohaffner/la-olla-generador-de-precios",
       deploylink: "https://laolla-generador.netlify.app/",
     },
+    {
+      id: 2,
+      tittle: "GymTrack [WIP]",
+      image: "https://i.imgur.com/kZBlfEK.png",
+      description:
+        "GymTrack is a web application designed for managing gym schedules, finances, and attendance. Built with React, it features sleek styling using Tailwind CSS, dynamic animations powered by Framer Motion, and efficient state management with TanStack Query. The backend is robustly crafted in .NET C# using ASP.NET. GymTrack ensures an intuitive user experience with a focus on reliable performance and streamlined management tools, making it an excellent solution for gym operations",
+      githublink: "disabled",
+      deploylink: "https://imgur.com/a/uvXfBQZ",
+    },
   ];
   const [show, setShow] = useState(false);
 

@@ -15,19 +15,30 @@ const Navbar = () => {
 
   return (
     <div>
-      <nav className="flex justify-center mx-auto">
+      <nav className="fixed top-0 w-full bg-black z-10">
         <ul className="flex justify-center">
-          <li className="p-5 hover:bg-white hover:text-black">
-            <a onClick={() => scrollToSection("home")}>Home</a>
+          <li className="hover:bg-white hover:text-black">
+            <a className="block p-5" onClick={() => scrollToSection("home")}>
+              Home
+            </a>
           </li>
-          <li className="p-5 hover:bg-white hover:text-black">
-            <a onClick={() => scrollToSection("aboutme")}>About me</a>
+          <li className="hover:bg-white hover:text-black">
+            <a className="block p-5" onClick={() => scrollToSection("aboutme")}>
+              About me
+            </a>
           </li>
-          <li className="p-5 hover:bg-white hover:text-black">
-            <a onClick={() => scrollToSection("projects")}>Projects</a>
+          <li className="hover:bg-white hover:text-black">
+            <a
+              className="block p-5"
+              onClick={() => scrollToSection("projects")}
+            >
+              Projects
+            </a>
           </li>
-          <li className="p-5 hover:bg-white hover:text-black">
-            <a onClick={() => scrollToSection("contact")}>Contact</a>
+          <li className="hover:bg-white hover:text-black">
+            <a className="block p-5" onClick={() => scrollToSection("contact")}>
+              Contact
+            </a>
           </li>
         </ul>
       </nav>
