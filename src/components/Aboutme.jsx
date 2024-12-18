@@ -13,9 +13,9 @@ const Aboutme = () => {
       <img
         src="https://i.imgur.com/QsZjEOG.jpeg"
         alt=""
-        className="md:w-1/4 border-2 p-2 object-center object-cover"
+        className="md:w-1/2 lg:w-1/2 border-2 p-2 object-center object-cover"
       />
-      <div className="border-2 p-2 flex flex-col md:w-1/4 justify-between ">
+      <div className="border-2 p-2 flex flex-col md:w-1/2 lg:w-1/4 justify-between ">
         <p className="text-center text-4xl font-bold">About me</p>
         <div className="p-2">
           <p>

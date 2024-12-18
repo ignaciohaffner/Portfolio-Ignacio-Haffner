@@ -14,6 +14,7 @@ const Projects = () => {
       githublink:
         "https://github.com/ignaciohaffner/la-olla-generador-de-precios",
       deploylink: "https://laolla-generador.netlify.app/",
+      technologies: ["React", "Hooks", "Bootstrap", "html2canvas"],
     },
     {
       id: 2,
@@ -22,15 +23,25 @@ const Projects = () => {
       description:
         "GymTrack is a web application designed for managing gym schedules, finances, and attendance. Built with React, it features sleek styling using Tailwind CSS, dynamic animations powered by Framer Motion, and efficient state management with TanStack Query. The backend is robustly crafted in .NET C# using ASP.NET. GymTrack ensures an intuitive user experience with a focus on reliable performance and streamlined management tools, making it an excellent solution for gym operations",
       githublink: "disabled",
-      deploylink: "https://imgur.com/a/uvXfBQZ",
+      deploylink: "https://imgur.com/a/gym-track-work-progress-uvXfBQZ",
+      technologies: [
+        "React",
+        "Tailwind CSS",
+        "Framer Motion",
+        "TanStack Query",
+        ".NET C#",
+        "ASP.NET",
+      ],
     },
   ];
   const [show, setShow] = useState(false);
 
   return (
-    <div className="md:h-screen mx-10" id="projects">
-      <h3 className="text-6xl font-bold text-center mt-32 mb-5">PROJECTS</h3>
-      <div className="flex flex-col md:flex-row justify-center gap-x-5">
+    <div className="md:h-screen mx-10 sm:mx-32 align-middle " id="projects">
+      <h3 className="text-4xl md:text-6xl font-bold text-center mt-32 mb-10">
+        PROJECTS
+      </h3>
+      <div className="flex flex-col  md:flex-row justify-center gap-6">
         {projects.map((project) => (
           <ProjectCard
             key={project.id}
@@ -39,6 +50,7 @@ const Projects = () => {
             description={project.description}
             githublink={project.githublink}
             deploylink={project.deploylink}
+            technologies={project.technologies}
           />
         ))}
       </div>

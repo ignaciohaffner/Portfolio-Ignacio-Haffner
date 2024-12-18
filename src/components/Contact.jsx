@@ -25,10 +25,11 @@ const Contact = () => {
   }, []);
 
   return (
-    <div className="mx-5 my-32" id="contact">
-      <h3 className="text-5xl md:text-6xl font-bold text-center mt-32 mb-5">
-        CONTACT ME
-      </h3>
+    <div
+      className="mx-5 my-96 flex flex-col items-center justify-center gap-y-5"
+      id="contact"
+    >
+      <h3 className="text-5xl md:text-6xl font-bold text-center">CONTACT ME</h3>
       <div className="flex flex-row justify-center gap-x-5 mt-5">
         <motion.div whileHover={{ scale: 1.5 }}>
           <a href="https://www.linkedin.com/in/ignaciohaffner/">
