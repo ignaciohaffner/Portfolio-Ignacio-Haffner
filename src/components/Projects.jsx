@@ -33,6 +33,16 @@ const Projects = () => {
         "ASP.NET",
       ],
     },
+    {
+      id: 3,
+      tittle: "La Olla Landing Page",
+      image: "https://i.imgur.com/eCdn1u1.png",
+      description:
+        "La Olla is a takeout restaurant located in Gualeguaychú, Argentina. This landing page was created with React, using Tailwind CSS for styling. The contact form is powered by Supabase, and the website is hosted on Netlify. The site is fully responsive and features a clean design that showcases the restaurant's menu and contact information. Additionally, it includes an admin section where prices can be updated, and new products can be added, making the site dynamic and easy to manage.",
+      githublink: "https://github.com/ignaciohaffner/la-olla-landing",
+      deploylink: "https://rotiserialaolla.netlify.app/",
+      technologies: ["React", "Tailwind", "Supabase", "Netlify"],
+    },
   ];
   const [show, setShow] = useState(false);
 
