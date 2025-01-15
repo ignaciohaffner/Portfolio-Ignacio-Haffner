@@ -3,7 +3,7 @@ const Main = () => {
   return (
     <div
       className=" h-screen flex flex-col justify-center items-center"
-      id="welcome"
+      id="home"
     >
       <motion.h1
         animate={{ scale: 3, x: [0, 100, 0] }}

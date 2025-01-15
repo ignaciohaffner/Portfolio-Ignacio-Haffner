@@ -1,15 +1,10 @@
 import { useState } from "react";
 import { Menu, X } from "lucide-react";
 
-interface NavItem {
-  id: string;
-  label: string;
-}
-
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
-  const scrollToSection = (id: string): void => {
+  const scrollToSection = (id) => {
     const element = document.getElementById(id);
     if (!element) return;
 
@@ -27,7 +22,7 @@ const Navbar = () => {
     setIsMenuOpen(false);
   };
 
-  const navItems: NavItem[] = [
+  const navItems = [
     { id: "home", label: "Home" },
     { id: "aboutme", label: "About me" },
     { id: "projects", label: "Projects" },
