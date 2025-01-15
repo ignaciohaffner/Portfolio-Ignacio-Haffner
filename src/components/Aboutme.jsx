@@ -1,8 +1,14 @@
 import { motion } from "framer-motion";
-import { RiJavascriptFill } from "react-icons/ri";
 import { FaHtml5, FaCss3Alt, FaReact, FaNode } from "react-icons/fa";
-import { SiExpress, SiMysql, SiTailwindcss } from "react-icons/si";
-import { BiLogoMongodb } from "react-icons/bi";
+import {
+  SiExpress,
+  SiMysql,
+  SiTailwindcss,
+  SiTypescript,
+  SiDotnet,
+} from "react-icons/si";
+import { BiLogoMongodb, BiLogoPostgresql } from "react-icons/bi";
+import { TbBrandCSharp } from "react-icons/tb";
 
 const Aboutme = () => {
   return (
@@ -59,7 +65,7 @@ const Aboutme = () => {
           <p className="font-bold text-xl text-center mb-3">Stack</p>
           <div className="flex gap-x-4 flex-wrap justify-center">
             <motion.div whileHover={{ scale: 1.5 }} className="block">
-              <RiJavascriptFill className="text-6xl hover:text-yellow-300" />
+              <SiTypescript className="text-5xl hover:text-blue-600" />
             </motion.div>
             <motion.div whileHover={{ scale: 1.5 }} className="block">
               <FaHtml5 className="text-6xl hover:text-orange-600" />
@@ -84,6 +90,15 @@ const Aboutme = () => {
             </motion.div>
             <motion.div whileHover={{ scale: 1.5 }} className="block">
               <SiTailwindcss className="text-6xl hover:text-cyan-500" />
+            </motion.div>
+            <motion.div whileHover={{ scale: 1.5 }} className="block">
+              <BiLogoPostgresql className="text-6xl hover:text-blue-600" />
+            </motion.div>
+            <motion.div whileHover={{ scale: 1.5 }} className="block">
+              <TbBrandCSharp className="text-6xl hover:text-purple-800" />
+            </motion.div>
+            <motion.div whileHover={{ scale: 1.5 }} className="block">
+              <SiDotnet className="text-6xl hover:text-purple-800" />
             </motion.div>
           </div>
         </div>
