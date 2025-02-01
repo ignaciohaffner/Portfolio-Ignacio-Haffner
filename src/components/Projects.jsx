@@ -43,6 +43,16 @@ const Projects = () => {
       deploylink: "https://rotiserialaolla.netlify.app/",
       technologies: ["React", "Tailwind", "Supabase", "Netlify"],
     },
+    {
+      id: 4,
+      tittle: "Exercises Tracker",
+      image: "https://i.imgur.com/Rwh2sru.png",
+      description:
+        "Math Exercise Tracker – A modern web application built with React and TypeScript that simplifies how students manage their math exercises. It features an intuitive tracking system with multiple states, dynamic topic and section management, and advanced data import/export. With a responsive interface, drag-and-drop support, and light/dark mode, it showcases expertise in complex UI development and state management in React.",
+      githublink: "https://github.com/ignaciohaffner/exercise-tracker",
+      deploylink: "https://excercise-tracker.netlify.app/",
+      technologies: ["React", "TypeScript", "React-Beautiful-DnD", "Tailwind"],
+    },
   ];
   const [show, setShow] = useState(false);
 
