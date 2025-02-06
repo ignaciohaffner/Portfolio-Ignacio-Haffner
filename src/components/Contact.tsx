@@ -12,7 +12,6 @@ const contactItems = [
   },
   { icon: Github, label: "GitHub", link: "https://github.com/ignaciohaffner/" },
   { icon: Mail, label: "Email", link: "mailto:ignaciohaffner@gmail.com" },
-  { icon: FileText, label: "CV", link: "#" }, // Reemplaza '#' con el enlace a tu CV
 ];
 
 const Contact: React.FC = () => {
@@ -30,7 +29,7 @@ const Contact: React.FC = () => {
             </CardTitle>
           </CardHeader>
           <CardContent>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
               {contactItems.map((item, index) => (
                 <motion.div
                   key={item.label}
