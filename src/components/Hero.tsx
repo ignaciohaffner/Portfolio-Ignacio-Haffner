@@ -2,8 +2,12 @@ import type React from "react";
 import { motion } from "framer-motion";
 import { Button } from "./ui/button";
 import { ChevronDown } from "lucide-react";
+import translations from "../utils/translations";
+import { useLanguage } from "../contexts/LanguageContext";
 
 const Hero: React.FC = () => {
+  const { language, setLanguage } = useLanguage();
+  const t = translations[language];
   return (
     <div
       className="min-h-screen flex flex-col justify-center items-center relative overflow-hidden"
@@ -44,10 +48,10 @@ const Hero: React.FC = () => {
         transition={{ duration: 0.8, ease: "easeOut" }}
       >
         <h1 className="text-4xl md:text-6xl font-bold mb-4 bg-clip-text text-transparent bg-gradient-to-r from-primary to-secondary">
-          IGNACIO HAFFNER
+          {t.hero.title}
         </h1>
         <p className="text-xl md:text-2xl text-muted-foreground">
-          FULL STACK DEVELOPER
+          {t.hero.subtitle}
         </p>
         <Button
           size="lg"
@@ -57,7 +61,7 @@ const Hero: React.FC = () => {
               ?.scrollIntoView({ behavior: "smooth" })
           }
         >
-          Ver Proyectos
+          {t.hero.cta}
         </Button>
       </motion.div>
       <motion.div

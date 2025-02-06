@@ -1,6 +1,8 @@
 import { motion } from "framer-motion";
 import ProjectCard from "./ProjectCard";
 import { Card, CardContent, CardHeader, CardTitle } from "./ui/card";
+import translations from "../utils/translations";
+import { useLanguage } from "../contexts/LanguageContext";
 
 const projects = [
   {
@@ -54,6 +56,8 @@ const projects = [
 ];
 
 const Projects = () => {
+  const { language, setLanguage } = useLanguage();
+  const t = translations[language];
   return (
     <div className="container mx-auto py-20" id="projects">
       <motion.div
@@ -64,7 +68,7 @@ const Projects = () => {
         <Card>
           <CardHeader>
             <CardTitle className="text-3xl font-bold text-center mb-6">
-              Projects
+              {t.projects.title}
             </CardTitle>
           </CardHeader>
           <CardContent>
