@@ -3,6 +3,8 @@ import { motion } from "framer-motion";
 import { Card, CardContent, CardHeader, CardTitle } from "./ui/card";
 import { Button } from "./ui/button";
 import { Linkedin, Github, Mail, FileText } from "lucide-react";
+import translations from "../utils/translations";
+import { useLanguage } from "../contexts/LanguageContext";
 
 const contactItems = [
   {
@@ -15,6 +17,8 @@ const contactItems = [
 ];
 
 const Contact: React.FC = () => {
+  const { language } = useLanguage();
+  const t = translations[language];
   return (
     <div className="container mx-auto py-20" id="contact">
       <motion.div
@@ -25,7 +29,7 @@ const Contact: React.FC = () => {
         <Card className="bg-background/50 backdrop-blur-sm">
           <CardHeader>
             <CardTitle className="text-3xl font-bold text-center mb-6">
-              Conectemos
+              {t.contact.title}
             </CardTitle>
           </CardHeader>
           <CardContent>
