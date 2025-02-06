@@ -9,7 +9,7 @@ import {
 import { Badge } from "./ui/badge";
 import { Button } from "./ui/button";
 import { Github, Globe } from "lucide-react";
-import type React from "react"; // Added import for React
+import type React from "react";
 
 interface ProjectCardProps {
   title: string;
