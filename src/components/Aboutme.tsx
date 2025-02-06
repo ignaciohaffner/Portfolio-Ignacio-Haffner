@@ -11,6 +11,8 @@ import {
 } from "react-icons/si";
 import { BiLogoMongodb, BiLogoPostgresql } from "react-icons/bi";
 import { TbBrandCSharp } from "react-icons/tb";
+import translations from "../utils/translations";
+import { useLanguage } from "../contexts/LanguageContext";
 
 const techStack = [
   { Icon: SiTypescript, color: "text-blue-600" },
@@ -28,6 +30,9 @@ const techStack = [
 ];
 
 const AboutMe = () => {
+  const { language, setLanguage } = useLanguage();
+  const t = translations[language];
+
   return (
     <div className="container mx-auto py-20" id="aboutme">
       <motion.div
@@ -38,7 +43,7 @@ const AboutMe = () => {
         <Card>
           <CardHeader>
             <CardTitle className="text-3xl font-bold text-center mb-6">
-              About Me
+              {t.about.title}
             </CardTitle>
           </CardHeader>
           <CardContent className="grid md:grid-cols-2 gap-6">
@@ -50,40 +55,41 @@ const AboutMe = () => {
               />
             </div>
             <div className="space-y-4">
-              <p>
-                I'm an advanced student pursuing a degree in Systems
-                Engineering. I specialize in full-stack development, focusing on
-                pragmatic solutions to real-world challenges.
-              </p>
-              <h3 className="text-xl font-semibold">🚀 Tech Stack:</h3>
+              <p>{t.about.description}</p>
+              <h3 className="text-xl font-semibold">🚀{t.about.techStack}</h3>
               <ul className="list-disc pl-5 space-y-2">
                 <li>
-                  <span className="font-semibold">Full Stack:</span> Proficient
-                  in crafting dynamic front-end experiences with React and
-                  ensuring robust back-end development using Node.js.
+                  <span className="font-semibold">
+                    {t.about.fullStackTitle}
+                  </span>
+                  {" " + t.about.fullStackBody}
                 </li>
                 <li>
-                  <span className="font-semibold">Databases:</span> Well-versed
-                  in both SQL and NoSQL databases, ensuring seamless data
-                  management and retrieval.
+                  <span className="font-semibold">
+                    {t.about.databasesTitle}
+                  </span>{" "}
+                  {t.about.databasesBody}
                 </li>
               </ul>
-              <h3 className="text-xl font-semibold">🔧 Skills:</h3>
+              <h3 className="text-xl font-semibold">🔧 {t.about.skills}</h3>
               <ul className="list-disc pl-5 space-y-2">
                 <li>
-                  <span className="font-semibold">Web Development:</span> Adept
-                  at designing functional and user-centric interfaces that bring
-                  ideas to life.
+                  <span className="font-semibold">
+                    {t.about.webDevelopmentTitle}
+                  </span>{" "}
+                  {t.about.webDevelopmentBody}
                 </li>
                 <li>
-                  <span className="font-semibold">Continuous Learner:</span>{" "}
-                  Always eager to explore emerging technologies and adapt to the
-                  evolving software development landscape.
+                  <span className="font-semibold">
+                    {t.about.continuousLearningTitle}
+                  </span>{" "}
+                  {t.about.continuousLearningBody}
                 </li>
                 <li>
-                  <span className="font-semibold">Problem Solver:</span>{" "}
-                  Equipped with analytical thinking and problem-solving skills
-                  to tackle complex issues.
+                  <span className="font-semibold">
+                    {t.about.problemSolvingTitle}
+                  </span>{" "}
+                  {t.about.problemSolvingBody}
                 </li>
               </ul>
               <div className="mt-6">
@@ -95,7 +101,7 @@ const AboutMe = () => {
                       whileHover={{ scale: 1.2 }}
                       transition={{ type: "spring", stiffness: 300 }}
                     >
-                      <Badge variant="outline" className={`text-2xl ${color}`}>
+                      <Badge variant="outline" className={`text-5xl ${color}`}>
                         <Icon />
                       </Badge>
                     </motion.div>

@@ -15,9 +15,26 @@ const translations = {
     about: {
       title: "Sobre mí",
       description:
-        "Soy un estudiante avanzado de Ingeniería en Sistemas. Me especializo en desarrollo full-stack, enfocándome en soluciones pragmáticas para desafíos del mundo real.",
+        "Soy estudiante avanzado de Ingeniería en Sistemas y me especializo en desarrollo full-stack. Me gusta crear soluciones prácticas para problemas reales.",
       skills: "Habilidades",
-      techStack: "Stack Tecnológico",
+      techStack: "Tecnologías",
+      fullStackTitle: "Full Stack:",
+      fullStackBody:
+        "Trabajo con tecnologías modernas para desarrollo full-stack, combinando un front-end dinámico con un back-end sólido.",
+      databasesTitle: "Bases de datos:",
+      databasesBody:
+        "Experiencia en bases de datos SQL y NoSQL para una gestión eficiente de la información.",
+      webDevelopmentTitle: "Desarrollo Web:",
+      webDevelopmentBody:
+        "Creación de interfaces funcionales y centradas en el usuario.",
+      optimizationTitle: "Optimización y escalabilidad:",
+      optimizationBody: "Diseño de sistemas eficientes y escalables.",
+      problemSolvingTitle: "Resolución de problemas:",
+      problemSolvingBody:
+        "Habilidad analítica para abordar desafíos complejos en el desarrollo de software.",
+      continuousLearningTitle: "Aprendizaje continuo:",
+      continuousLearningBody:
+        "Siempre explorando nuevas tecnologías y mejores prácticas.",
     },
     projects: {
       title: "Proyectos",
@@ -59,9 +76,25 @@ const translations = {
     about: {
       title: "About Me",
       description:
-        "I'm an advanced Systems Engineering student. I specialize in full-stack development, focusing on pragmatic solutions to real-world challenges.",
+        "I'm an advanced Systems Engineering student specializing in full-stack development. I enjoy building practical solutions for real-world problems.",
       skills: "Skills",
       techStack: "Tech Stack",
+      fullStackTitle: "Full Stack:",
+      fullStackBody:
+        "I work with modern technologies for full-stack development, combining a dynamic front-end with a solid back-end.",
+      databasesTitle: "Databases:",
+      databasesBody:
+        "Experience in SQL and NoSQL databases for efficient data management.",
+      webDevelopmentTitle: "Web Development:",
+      webDevelopmentBody: "Creating functional and user-centric interfaces.",
+      optimizationTitle: "Optimization & Scalability:",
+      optimizationBody: "Designing efficient and scalable systems.",
+      problemSolvingTitle: "Problem Solving:",
+      problemSolvingBody:
+        "Analytical mindset to tackle complex software challenges.",
+      continuousLearningTitle: "Continuous Learning:",
+      continuousLearningBody:
+        "Always exploring new technologies and best practices.",
     },
     projects: {
       title: "Projects",
