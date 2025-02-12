@@ -1,4 +1,4 @@
-import { motion } from "framer-motion";
+import { m, motion } from "framer-motion";
 import ProjectCard from "./ProjectCard";
 import { Card, CardContent, CardHeader, CardTitle } from "./ui/card";
 import translations from "../utils/translations";
@@ -21,7 +21,7 @@ const projects = [
     title: "GymTrack [WIP]",
     image: "https://i.imgur.com/kZBlfEK.png",
     description:
-      "Comprehensive gym management web app built with React and .NET C#.",
+      "GymTrack is a web application designed for managing gym schedules, finances, and attendance. Built with React, it features sleek styling using Tailwind CSS, dynamic animations powered by Framer Motion, and efficient state management with TanStack Query. The backend is robustly crafted in .NET C# using ASP.NET. GymTrack ensures an intuitive user experience with a focus on reliable performance and streamlined management tools, making it an excellent solution for gym operations.",
     githubLink: "disabled",
     deployLink: "https://imgur.com/a/gym-track-work-progress-uvXfBQZ",
     technologies: [
@@ -38,7 +38,7 @@ const projects = [
     title: "La Olla Landing Page",
     image: "https://i.imgur.com/eCdn1u1.png",
     description:
-      "Responsive landing page for a takeout restaurant with admin section for menu management.",
+      "La Olla is a takeout restaurant located in Gualeguaychú, Argentina. This landing page was created with React, using Tailwind CSS for styling. The contact form is powered by Supabase, and the website is hosted on Netlify. The site is fully responsive and features a clean design that showcases the restaurant's menu and contact information. Additionally, it includes an admin section where prices can be updated, and new products can be added, making the site dynamic and easy to manage.",
     githubLink: "https://github.com/ignaciohaffner/la-olla-landing",
     deployLink: "https://rotiserialaolla.netlify.app/",
     technologies: ["React", "Tailwind", "Supabase", "Netlify"],
@@ -48,10 +48,20 @@ const projects = [
     title: "Exercises Tracker",
     image: "https://i.imgur.com/Rwh2sru.png",
     description:
-      "Modern web app for tracking math exercises, featuring advanced UI and state management.",
+      "Math Exercise Tracker – A modern web application built with React and TypeScript that simplifies how students manage their math exercises. It features an intuitive tracking system with multiple states, dynamic topic and section management, and advanced data import/export. With a responsive interface, drag-and-drop support, and light/dark mode, it showcases expertise in complex UI development and state management in React.",
     githubLink: "https://github.com/ignaciohaffner/exercise-tracker",
     deployLink: "https://excercise-tracker.netlify.app/",
     technologies: ["React", "TypeScript", "React-Beautiful-DnD", "Tailwind"],
+  },
+  {
+    id: 5,
+    title: "Nelson Taffarel Portfolio",
+    image: "https://i.imgur.com/he2jubC.png",
+    description:
+      "Personal portfolio website made with React and Tailwind CSS, Framer Motion animations, and Shadcn Components, implements a full responsive design.",
+    githubLink: "https://github.com/ignaciohaffner/portfolio-nelson-taffarel",
+    deployLink: "https://nelsontaffarel.netlify.app/",
+    technologies: ["React", "Tailwind", "Framer Motion", "Netlify"],
   },
 ];
 
