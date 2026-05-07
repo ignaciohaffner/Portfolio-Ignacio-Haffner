@@ -89,7 +89,7 @@ const Hero: React.FC = () => {
             </Button>
             <Button variant="outline" size="icon" asChild>
               <a
-                href="https://linkedin.com/in/ignacio-haffner"
+                href="https://www.linkedin.com/in/ignaciohaffner/"
                 target="_blank"
                 rel="noopener noreferrer"
               >

@@ -1,11 +1,5 @@
 import { motion } from "framer-motion";
-import {
-  Card,
-  CardContent,
-  CardFooter,
-  CardHeader,
-  CardTitle,
-} from "./ui/card";
+import { Card, CardContent, CardFooter, CardHeader } from "./ui/card";
 import { Badge } from "./ui/badge";
 import { Button } from "./ui/button";
 import { Github, Globe } from "lucide-react";
@@ -30,32 +24,38 @@ const ProjectCard: React.FC<ProjectCardProps> = ({
 }) => {
   return (
     <motion.div
-      whileHover={{ scale: 1.05 }}
+      whileHover={{ y: -4 }}
       transition={{ type: "spring", stiffness: 300 }}
+      className="h-full"
     >
-      <Card className="overflow-hidden">
+      <Card className="overflow-hidden h-full flex flex-col hover:shadow-md transition-shadow">
         <CardHeader className="p-0">
-          <img
-            src={image || "/placeholder.svg"}
-            alt={title}
-            className="w-full h-48 object-cover"
-          />
+          <div className="overflow-hidden h-44">
+            <img
+              src={image || "/placeholder.svg"}
+              alt={title}
+              className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
+            />
+          </div>
         </CardHeader>
-        <CardContent className="p-4">
-          <CardTitle className="text-xl font-semibold mb-2">{title}</CardTitle>
-          <p className="text-sm text-muted-foreground mb-4">{description}</p>
-          <div className="flex flex-wrap gap-2 mb-4">
-            {technologies.map((tech, index) => (
-              <Badge key={index} variant="secondary">
+        <CardContent className="p-4 flex-1 flex flex-col gap-3">
+          <h3 className="font-semibold text-base">{title}</h3>
+          <p className="text-sm text-muted-foreground line-clamp-3 leading-relaxed flex-1">
+            {description}
+          </p>
+          <div className="flex flex-wrap gap-1.5">
+            {technologies.map((tech) => (
+              <Badge key={tech} variant="secondary" className="text-xs">
                 {tech}
               </Badge>
             ))}
           </div>
         </CardContent>
-        <CardFooter className="flex justify-between p-4">
+        <CardFooter className="flex justify-between gap-2 p-4 pt-0">
           <Button
             variant="outline"
             size="sm"
+            className="flex-1"
             disabled={githubLink === "disabled"}
             onClick={() => window.open(githubLink, "_blank")}
           >
@@ -65,6 +65,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({
           <Button
             variant="outline"
             size="sm"
+            className="flex-1"
             disabled={deployLink === "disabled"}
             onClick={() => window.open(deployLink, "_blank")}
           >

@@ -6,7 +6,8 @@ import { Badge } from "./ui/badge";
 import { Button } from "./ui/button";
 import { ExternalLink, Star } from "lucide-react";
 import { FaReact, FaNode } from "react-icons/fa";
-import { SiTypescript, SiPostgresql, SiExpress } from "react-icons/si";
+import { SiTypescript, SiExpress } from "react-icons/si";
+import { BiLogoPostgresql } from "react-icons/bi";
 import reservappPreview from "../assets/reservapp-preview.png";
 import reservappServices from "../assets/reservapp-services.png";
 import reservappBooking from "../assets/reservapp-booking.png";
@@ -21,7 +22,7 @@ const featuredTech = [
   { Icon: FaReact, color: "text-blue-400", label: "React" },
   { Icon: FaNode, color: "text-green-600", label: "Node.js" },
   { Icon: SiExpress, color: "text-yellow-400", label: "Express" },
-  { Icon: SiPostgresql, color: "text-blue-600", label: "PostgreSQL" },
+  { Icon: BiLogoPostgresql, color: "text-blue-600", label: "PostgreSQL" },
 ];
 
 const projects = [

@@ -1,30 +1,23 @@
 import type React from "react";
-import { useState } from "react";
-import { Menu, Moon, Sun, Globe, Settings } from "lucide-react";
+import { useState, useEffect } from "react";
+import { Menu, Moon, Sun } from "lucide-react";
 import { motion } from "framer-motion";
 import { Button } from "./ui/button";
 import { Sheet, SheetContent, SheetTrigger } from "./ui/sheet";
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuLabel,
-  DropdownMenuSeparator,
-  DropdownMenuTrigger,
-} from "./ui/dropdown-menu";
 import { useTheme } from "../contexts/ThemeContext";
 import { useLanguage } from "../contexts/LanguageContext";
 import translations from "../utils/translations";
 
+const sectionIds = ["home", "aboutme", "experience", "projects", "certificates", "contact"];
+
 const Navbar: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const [activeSection, setActiveSection] = useState("home");
   const { theme, toggleTheme } = useTheme();
   const { language, setLanguage } = useLanguage();
-
   const t = translations[language];
 
   const navItems = [
-    { id: "home", label: t.nav.home },
     { id: "aboutme", label: t.nav.about },
     { id: "experience", label: t.nav.experience },
     { id: "projects", label: t.nav.projects },
@@ -32,21 +25,32 @@ const Navbar: React.FC = () => {
     { id: "contact", label: t.nav.contact },
   ];
 
+  useEffect(() => {
+    const observers: IntersectionObserver[] = [];
+
+    sectionIds.forEach((id) => {
+      const el = document.getElementById(id);
+      if (!el) return;
+      const observer = new IntersectionObserver(
+        ([entry]) => {
+          if (entry.isIntersecting) setActiveSection(id);
+        },
+        { threshold: 0.4 }
+      );
+      observer.observe(el);
+      observers.push(observer);
+    });
+
+    return () => observers.forEach((o) => o.disconnect());
+  }, []);
+
   const scrollToSection = (id: string) => {
     const element = document.getElementById(id);
     if (!element) return;
-
-    const offset = 100;
-    const bodyRect = document.body.getBoundingClientRect().top;
-    const elementRect = element.getBoundingClientRect().top;
-    const elementPosition = elementRect - bodyRect;
-    const offsetPosition = elementPosition - offset;
-
-    window.scrollTo({
-      top: offsetPosition,
-      behavior: "smooth",
-    });
-
+    const offset = 80;
+    const top =
+      element.getBoundingClientRect().top + window.scrollY - offset;
+    window.scrollTo({ top, behavior: "smooth" });
     setIsOpen(false);
   };
 
@@ -54,92 +58,107 @@ const Navbar: React.FC = () => {
     <nav className="fixed top-0 w-full bg-background/80 backdrop-blur-sm z-50 border-b">
       <div className="max-w-7xl mx-auto px-4">
         <div className="flex items-center justify-between h-16">
-          <motion.div
-            initial={{ opacity: 0, x: -50 }}
+          {/* Logo */}
+          <motion.button
+            initial={{ opacity: 0, x: -30 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.5 }}
+            onClick={() => scrollToSection("home")}
+            className="text-xl font-bold tracking-tight hover:text-blue-500 transition-colors"
           >
-            <span className="text-2xl font-bold">IH</span>
-          </motion.div>
-          <div className="hidden md:flex space-x-4 items-center">
-            {navItems.map((item) => (
-              <Button
-                key={item.id}
-                variant="ghost"
-                onClick={() => scrollToSection(item.id)}
-              >
-                {item.label}
-              </Button>
-            ))}
-            <DropdownMenu>
-              <DropdownMenuTrigger asChild>
-                <Button variant="outline" size="icon">
-                  <Settings className="h-[1.2rem] w-[1.2rem]" />
-                  <span className="sr-only">Settings</span>
-                </Button>
-              </DropdownMenuTrigger>
-              <DropdownMenuContent align="end">
-                <DropdownMenuLabel>{t.settings.appearance}</DropdownMenuLabel>
-                <DropdownMenuItem onClick={() => toggleTheme()}>
-                  <Moon className="h-[1.2rem] w-[1.2rem] rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0" />
-                  <Sun className="absolute h-[1.2rem] w-[1.2rem] rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100" />
-                  {theme === "light"
-                    ? t.settings.darkMode
-                    : t.settings.lightMode}
-                </DropdownMenuItem>
-                <DropdownMenuSeparator />
-                <DropdownMenuLabel>{t.settings.language}</DropdownMenuLabel>
-                <DropdownMenuItem onClick={() => setLanguage("es")}>
-                  <Globe className="mr-2 h-4 w-4" /> Español
-                </DropdownMenuItem>
-                <DropdownMenuItem onClick={() => setLanguage("en")}>
-                  <Globe className="mr-2 h-4 w-4" /> English
-                </DropdownMenuItem>
-              </DropdownMenuContent>
-            </DropdownMenu>
+            IH
+          </motion.button>
+
+          {/* Desktop nav */}
+          <div className="hidden md:flex items-center gap-1">
+            {navItems.map((item) => {
+              const isActive = activeSection === item.id;
+              return (
+                <button
+                  key={item.id}
+                  onClick={() => scrollToSection(item.id)}
+                  className={`relative px-3 py-1.5 text-sm font-medium rounded-md transition-colors ${
+                    isActive
+                      ? "text-foreground"
+                      : "text-muted-foreground hover:text-foreground"
+                  }`}
+                >
+                  {item.label}
+                  {isActive && (
+                    <motion.span
+                      layoutId="active-pill"
+                      className="absolute inset-0 rounded-md bg-muted z-[-1]"
+                      transition={{ type: "spring", stiffness: 380, damping: 30 }}
+                    />
+                  )}
+                </button>
+              );
+            })}
           </div>
+
+          {/* Controls */}
+          <div className="hidden md:flex items-center gap-1">
+            <Button
+              variant="ghost"
+              size="sm"
+              onClick={() => setLanguage(language === "es" ? "en" : "es")}
+              className="text-xs font-semibold w-12"
+            >
+              {language === "es" ? "EN" : "ES"}
+            </Button>
+            <Button variant="ghost" size="icon" onClick={toggleTheme}>
+              {theme === "light" ? (
+                <Moon className="h-4 w-4" />
+              ) : (
+                <Sun className="h-4 w-4" />
+              )}
+            </Button>
+          </div>
+
+          {/* Mobile menu */}
           <Sheet open={isOpen} onOpenChange={setIsOpen}>
             <SheetTrigger asChild>
-              <Button variant="outline" size="icon" className="md:hidden">
-                <Menu className="h-6 w-6" />
+              <Button variant="ghost" size="icon" className="md:hidden">
+                <Menu className="h-5 w-5" />
               </Button>
             </SheetTrigger>
-            <SheetContent side="right">
-              <div className="flex flex-col space-y-4 mt-4">
+            <SheetContent side="right" className="w-64">
+              <div className="flex flex-col gap-1 mt-8">
                 {navItems.map((item) => (
-                  <Button
+                  <button
                     key={item.id}
-                    variant="ghost"
                     onClick={() => scrollToSection(item.id)}
+                    className={`text-left px-4 py-2.5 rounded-lg text-sm font-medium transition-colors ${
+                      activeSection === item.id
+                        ? "bg-muted text-foreground"
+                        : "text-muted-foreground hover:text-foreground hover:bg-muted/50"
+                    }`}
                   >
                     {item.label}
-                  </Button>
+                  </button>
                 ))}
-                <DropdownMenu>
-                  <DropdownMenuTrigger asChild>
-                    <Button variant="outline">{t.settings.settings}</Button>
-                  </DropdownMenuTrigger>
-                  <DropdownMenuContent>
-                    <DropdownMenuLabel>
-                      {t.settings.appearance}
-                    </DropdownMenuLabel>
-                    <DropdownMenuItem onClick={() => toggleTheme()}>
-                      <Moon className="h-[1.2rem] w-[1.2rem] rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0" />
-                      <Sun className="absolute h-[1.2rem] w-[1.2rem] rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100" />
-                      {theme === "light"
-                        ? t.settings.darkMode
-                        : t.settings.lightMode}
-                    </DropdownMenuItem>
-                    <DropdownMenuSeparator />
-                    <DropdownMenuLabel>{t.settings.language}</DropdownMenuLabel>
-                    <DropdownMenuItem onClick={() => setLanguage("es")}>
-                      <Globe className="mr-2 h-4 w-4" /> Español
-                    </DropdownMenuItem>
-                    <DropdownMenuItem onClick={() => setLanguage("en")}>
-                      <Globe className="mr-2 h-4 w-4" /> English
-                    </DropdownMenuItem>
-                  </DropdownMenuContent>
-                </DropdownMenu>
+                <div className="flex gap-2 mt-4 px-2">
+                  <Button
+                    variant="outline"
+                    size="sm"
+                    className="flex-1 text-xs font-semibold"
+                    onClick={() => setLanguage(language === "es" ? "en" : "es")}
+                  >
+                    {language === "es" ? "EN" : "ES"}
+                  </Button>
+                  <Button
+                    variant="outline"
+                    size="icon"
+                    onClick={toggleTheme}
+                    className="shrink-0"
+                  >
+                    {theme === "light" ? (
+                      <Moon className="h-4 w-4" />
+                    ) : (
+                      <Sun className="h-4 w-4" />
+                    )}
+                  </Button>
+                </div>
               </div>
             </SheetContent>
           </Sheet>
