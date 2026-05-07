@@ -3,6 +3,7 @@ import { motion } from "framer-motion";
 import { Parallax } from "react-scroll-parallax";
 import Hero from "../components/Hero";
 import AboutMe from "../components/Aboutme";
+import Experience from "../components/Experience";
 import Projects from "../components/Projects";
 import Certificates from "../components/Certificates";
 import Contact from "../components/Contact";
@@ -21,6 +22,9 @@ const MainPage: React.FC = () => {
         <AboutMe />
       </Parallax>
       <Parallax speed={5}>
+        <Experience />
+      </Parallax>
+      <Parallax speed={-5}>
         <Projects />
       </Parallax>
       <Parallax speed={-5}>

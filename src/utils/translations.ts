@@ -8,6 +8,7 @@ const translations = {
     nav: {
       home: "Inicio",
       about: "Sobre mí",
+      experience: "Experiencia",
       projects: "Proyectos",
       contact: "Contacto",
       certificates: "Certificados",
@@ -35,6 +36,40 @@ const translations = {
       continuousLearningTitle: "Aprendizaje continuo:",
       continuousLearningBody:
         "Siempre explorando nuevas tecnologías y mejores prácticas.",
+      aiCalloutHeading: "Cómo construyo software",
+      aiCalloutText:
+        "Aplico Spec-Driven Development usando Claude Code como herramienta principal, orquestando agentes para diseñar, implementar y validar funcionalidades con mayor velocidad y precisión.",
+    },
+    featured: {
+      label: "Proyecto Destacado",
+      saas: "SaaS",
+      coFounder: "Co-Fundador & Desarrollador Full Stack",
+      duration: "Sep 2025 – Presente",
+      visitSite: "Visitar Sitio",
+      viewGithub: "Ver GitHub",
+      title: "ReservApp",
+      bullets: [
+        "Co-fundé y desarrollé una plataforma SaaS que ayuda a empresas a gestionar reservas y automatizar interacciones con clientes.",
+        "Construí sistemas backend escalables y APIs para soportar flujos de reservas, pagos y notificaciones.",
+        "Integré automatización de WhatsApp para mejorar la comunicación y reducir turnos perdidos.",
+        "Diseñé la arquitectura del sistema y lideré el desarrollo del producto de principio a fin.",
+        "Enfocado en mejorar la eficiencia operativa de los negocios a través de la automatización y digitalización.",
+      ],
+    },
+    experience: {
+      title: "Experiencia",
+      present: "Presente",
+      current: "Actual",
+      role: "Desarrollador Full Stack",
+      company: "Delta IT",
+      duration: "Abr 2025",
+      bullets: [
+        "Entrega de soluciones web escalables con Node.js, TypeScript, React y PostgreSQL para operaciones críticas del negocio.",
+        "Mejora del rendimiento backend y la confiabilidad del sistema mediante optimización de APIs y mejoras de procesos.",
+        "Lideré integraciones con sistemas legacy, garantizando la consistencia de datos entre plataformas.",
+        "Contribuí al desarrollo de funcionalidades clave que mejoraron flujos internos y redujeron errores operativos.",
+        "Soporte en despliegues a producción y validación de sistemas, asegurando estabilidad entre entornos.",
+      ],
     },
     projects: {
       title: "Proyectos",
@@ -69,6 +104,7 @@ const translations = {
     nav: {
       home: "Home",
       about: "About",
+      experience: "Experience",
       projects: "Projects",
       contact: "Contact",
       certificates: "Certificates",
@@ -95,6 +131,40 @@ const translations = {
       continuousLearningTitle: "Continuous Learning:",
       continuousLearningBody:
         "Always exploring new technologies and best practices.",
+      aiCalloutHeading: "How I build software",
+      aiCalloutText:
+        "I apply Spec-Driven Development using Claude Code as my primary AI tool, orchestrating agents to design, implement, and validate features with greater speed and precision.",
+    },
+    featured: {
+      label: "Featured Project",
+      saas: "SaaS",
+      coFounder: "Co-Founder & Full-Stack Developer",
+      duration: "Sep 2025 – Present",
+      visitSite: "Visit Site",
+      viewGithub: "View GitHub",
+      title: "ReservApp",
+      bullets: [
+        "Co-founded and developed a SaaS platform that helps businesses manage reservations and automate customer interactions.",
+        "Built scalable backend systems and APIs to support booking flows, payments, and notifications.",
+        "Integrated WhatsApp automation to improve communication and reduce missed appointments.",
+        "Designed the system architecture and led end-to-end product development.",
+        "Focused on improving operational efficiency for businesses through automation and digitalization.",
+      ],
+    },
+    experience: {
+      title: "Experience",
+      present: "Present",
+      current: "Current",
+      role: "Full Stack Developer",
+      company: "Delta IT",
+      duration: "Apr 2025",
+      bullets: [
+        "Delivered scalable web solutions using Node.js, TypeScript, React, and PostgreSQL for business-critical operations.",
+        "Improved backend performance and system reliability through API optimization and process enhancements.",
+        "Led integrations with legacy systems, ensuring data consistency across platforms.",
+        "Contributed to the development of key features that improved internal workflows and reduced operational errors.",
+        "Supported production deployments and system validation, ensuring stability across environments.",
+      ],
     },
     projects: {
       title: "Projects",
