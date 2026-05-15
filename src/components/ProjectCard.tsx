@@ -1,6 +1,4 @@
 import { motion } from "framer-motion";
-import { Card, CardContent, CardFooter, CardHeader } from "./ui/card";
-import { Badge } from "./ui/badge";
 import { Button } from "./ui/button";
 import { Github, Globe } from "lucide-react";
 import type React from "react";
@@ -24,56 +22,88 @@ const ProjectCard: React.FC<ProjectCardProps> = ({
 }) => {
   return (
     <motion.div
-      whileHover={{ y: -4 }}
-      transition={{ type: "spring", stiffness: 300 }}
-      className="h-full"
+      whileHover={{ y: -6 }}
+      transition={{ type: "spring", stiffness: 300, damping: 20 }}
+      className="h-full group"
     >
-      <Card className="overflow-hidden h-full flex flex-col hover:shadow-md transition-shadow">
-        <CardHeader className="p-0">
-          <div className="overflow-hidden h-44">
-            <img
-              src={image || "/placeholder.svg"}
-              alt={title}
-              className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
-            />
-          </div>
-        </CardHeader>
-        <CardContent className="p-4 flex-1 flex flex-col gap-3">
-          <h3 className="font-semibold text-base">{title}</h3>
-          <p className="text-sm text-muted-foreground line-clamp-3 leading-relaxed flex-1">
+      <div
+        className="overflow-hidden h-full flex flex-col rounded-xl transition-all duration-300 group-hover:shadow-[0_0_30px_rgba(99,102,241,0.12)]"
+        style={{
+          background: "rgba(15,23,42,0.7)",
+          border: "1px solid rgba(99,102,241,0.14)",
+          boxShadow: "0 4px 24px rgba(0,0,0,0.35)",
+        }}
+      >
+        {/* Image */}
+        <div className="relative overflow-hidden h-44 shrink-0">
+          <img
+            src={image || "/placeholder.svg"}
+            alt={title}
+            className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+          />
+          <div
+            className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+            style={{ background: "linear-gradient(to top, rgba(13,17,23,0.75) 0%, transparent 55%)" }}
+          />
+        </div>
+
+        {/* Content */}
+        <div className="p-4 flex-1 flex flex-col gap-3">
+          <h3 className="font-bold text-base tracking-tight" style={{ color: "#f1f5f9" }}>
+            {title}
+          </h3>
+          <p className="text-sm leading-relaxed flex-1" style={{ color: "#94a3b8" }}>
             {description}
           </p>
           <div className="flex flex-wrap gap-1.5">
             {technologies.map((tech) => (
-              <Badge key={tech} variant="secondary" className="text-xs">
+              <span
+                key={tech}
+                className="text-xs font-medium px-2.5 py-0.5 rounded-full"
+                style={{
+                  background: "rgba(99,102,241,0.12)",
+                  color: "#a5b4fc",
+                  border: "1px solid rgba(99,102,241,0.22)",
+                }}
+              >
                 {tech}
-              </Badge>
+              </span>
             ))}
           </div>
-        </CardContent>
-        <CardFooter className="flex justify-between gap-2 p-4 pt-0">
+        </div>
+
+        {/* Footer */}
+        <div className="flex gap-2 p-4 pt-0">
           <Button
-            variant="outline"
             size="sm"
-            className="flex-1"
+            className="flex-1 text-xs font-medium h-8"
+            style={{
+              background: "rgba(255,255,255,0.05)",
+              border: "1px solid rgba(255,255,255,0.1)",
+              color: "#cbd5e1",
+            }}
             disabled={githubLink === "disabled"}
             onClick={() => window.open(githubLink, "_blank")}
           >
-            <Github className="mr-2 h-4 w-4" />
+            <Github className="mr-1.5 h-3.5 w-3.5" />
             GitHub
           </Button>
           <Button
-            variant="outline"
             size="sm"
-            className="flex-1"
+            className="flex-1 text-xs font-medium h-8"
+            style={{
+              background: "rgba(255,255,255,0.05)",
+              border: "1px solid rgba(255,255,255,0.1)",
+              color: "#cbd5e1",
+            }}
             disabled={deployLink === "disabled"}
             onClick={() => window.open(deployLink, "_blank")}
           >
-            <Globe className="mr-2 h-4 w-4" />
+            <Globe className="mr-1.5 h-3.5 w-3.5" />
             Deploy
           </Button>
-        </CardFooter>
-      </Card>
+        </div>
+      </div>
     </motion.div>
   );
 };

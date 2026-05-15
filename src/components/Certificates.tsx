@@ -1,7 +1,5 @@
 import type React from "react";
 import { motion } from "framer-motion";
-import { Card, CardContent, CardHeader, CardTitle } from "./ui/card";
-import { Badge } from "./ui/badge";
 import { ExternalLink } from "lucide-react";
 import { useLanguage } from "../contexts/LanguageContext";
 import translations from "../utils/translations";
@@ -52,10 +50,20 @@ const certificates: Certificate[] = [
   },
 ];
 
-const companyColor: Record<string, string> = {
-  Udemy: "bg-orange-500/10 text-orange-600 dark:text-orange-400 border-orange-500/20",
-  "EF SET": "bg-blue-500/10 text-blue-600 dark:text-blue-400 border-blue-500/20",
-  "LinkedIn Learning": "bg-sky-500/10 text-sky-600 dark:text-sky-400 border-sky-500/20",
+const companyStyles: Record<string, { color: string; bg: string; dot: string }> = {
+  Udemy: { color: "#fb923c", bg: "rgba(249,115,22,0.1)", dot: "#f97316" },
+  "EF SET": { color: "#60a5fa", bg: "rgba(59,130,246,0.1)", dot: "#3b82f6" },
+  "LinkedIn Learning": { color: "#38bdf8", bg: "rgba(14,165,233,0.1)", dot: "#0ea5e9" },
+};
+
+const containerVariants = {
+  hidden: { opacity: 0 },
+  visible: { opacity: 1, transition: { staggerChildren: 0.08 } },
+};
+
+const rowVariants = {
+  hidden: { opacity: 0, x: -16 },
+  visible: { opacity: 1, x: 0, transition: { duration: 0.4, ease: "easeOut" } },
 };
 
 const Certificates: React.FC = () => {
@@ -65,52 +73,83 @@ const Certificates: React.FC = () => {
   return (
     <div className="container mx-auto py-20" id="certificates">
       <motion.div
-        initial={{ opacity: 0, y: 50 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.5 }}
+        initial={{ opacity: 0, y: 40 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, margin: "-50px" }}
+        transition={{ duration: 0.55, ease: "easeOut" }}
+        className="space-y-8"
       >
-        <Card>
-          <CardHeader>
-            <CardTitle className="text-3xl font-bold text-center mb-6">
-              {t.certificates.title}
-            </CardTitle>
-          </CardHeader>
-          <CardContent>
-            <div className="divide-y divide-border">
-              {certificates.map((cert, i) => (
+        {/* Section header */}
+        <div className="space-y-1">
+          <p className="text-xs font-semibold uppercase tracking-[0.22em]" style={{ color: "#60a5fa" }}>
+            — {t.certificates.title}
+          </p>
+        </div>
+
+        {/* Card */}
+        <div
+          className="rounded-2xl overflow-hidden"
+          style={{
+            background: "rgba(15,23,42,0.7)",
+            border: "1px solid rgba(99,102,241,0.14)",
+            boxShadow: "0 4px 32px rgba(0,0,0,0.3)",
+          }}
+        >
+          <motion.div
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, margin: "-50px" }}
+            variants={containerVariants}
+            className="divide-y"
+            style={{ borderColor: "rgba(255,255,255,0.05)" }}
+          >
+            {certificates.map((cert) => {
+              const style = companyStyles[cert.company] ?? {
+                color: "#94a3b8",
+                bg: "rgba(148,163,184,0.1)",
+                dot: "#94a3b8",
+              };
+              return (
                 <motion.a
                   key={cert.id}
                   href={cert.url}
                   target="_blank"
                   rel="noopener noreferrer"
-                  initial={{ opacity: 0, x: -16 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  transition={{ delay: i * 0.07, duration: 0.4 }}
-                  className="flex items-center justify-between gap-4 py-4 group hover:bg-muted/40 px-3 -mx-3 rounded-lg transition-colors"
+                  variants={rowVariants}
+                  className="flex items-center justify-between gap-4 px-5 py-4 group transition-colors duration-200"
+                  style={{ borderColor: "rgba(255,255,255,0.05)" }}
+                  whileHover={{ backgroundColor: "rgba(99,102,241,0.05)" }}
                 >
                   <div className="flex items-center gap-4 min-w-0">
-                    <Badge
-                      variant="outline"
-                      className={`shrink-0 text-xs font-medium ${companyColor[cert.company] ?? ""}`}
+                    {/* Company pill */}
+                    <span
+                      className="shrink-0 text-xs font-semibold px-2.5 py-0.5 rounded-full flex items-center gap-1.5"
+                      style={{ background: style.bg, color: style.color, border: `1px solid ${style.color}22` }}
                     >
+                      <span className="w-1.5 h-1.5 rounded-full shrink-0" style={{ background: style.dot }} />
                       {cert.company}
-                    </Badge>
-                    <span className="text-sm font-medium truncate">{cert.name}</span>
+                    </span>
+                    <span className="text-sm font-medium truncate" style={{ color: "#e2e8f0" }}>
+                      {cert.name}
+                    </span>
                   </div>
-                  <div className="flex items-center gap-3 shrink-0 text-muted-foreground">
-                    <span className="text-xs hidden sm:block">
+                  <div className="flex items-center gap-3 shrink-0">
+                    <span className="text-xs hidden sm:block" style={{ color: "#475569" }}>
                       {new Date(cert.date).toLocaleDateString(
                         language === "es" ? "es-ES" : "en-US",
                         { year: "numeric", month: "short" }
                       )}
                     </span>
-                    <ExternalLink className="w-4 h-4 opacity-0 group-hover:opacity-100 transition-opacity" />
+                    <ExternalLink
+                      className="w-3.5 h-3.5 transition-all duration-200 opacity-0 group-hover:opacity-100 group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
+                      style={{ color: "#60a5fa" }}
+                    />
                   </div>
                 </motion.a>
-              ))}
-            </div>
-          </CardContent>
-        </Card>
+              );
+            })}
+          </motion.div>
+        </div>
       </motion.div>
     </div>
   );
