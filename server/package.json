@@ -1,0 +1,13 @@
+{
+  "name": "portfolio-ssr",
+  "private": true,
+  "type": "module",
+  "description": "Static server for the portfolio SPA that injects Open Graph / Twitter meta tags into /blog/:slug for crawlers.",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "dependencies": {
+    "compression": "^1.7.5",
+    "express": "^4.21.2"
+  }
+}
