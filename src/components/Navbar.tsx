@@ -1,5 +1,6 @@
 import type React from "react";
 import { useState, useEffect } from "react";
+import { useLocation, useNavigate } from "react-router-dom";
 import { Menu } from "lucide-react";
 import { Button } from "./ui/button";
 import { Sheet, SheetContent, SheetTrigger } from "./ui/sheet";
@@ -8,11 +9,16 @@ import translations from "../utils/translations";
 
 const sectionIds = ["home", "aboutme", "experience", "projects", "certificates", "contact"];
 
+const MONO = '"JetBrains Mono", monospace';
+
 const Navbar: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [activeSection, setActiveSection] = useState("home");
   const { language, setLanguage } = useLanguage();
   const t = translations[language];
+  const navigate = useNavigate();
+  const location = useLocation();
+  const onBlog = location.pathname.startsWith("/blog");
 
   const navItems = [
     { id: "aboutme", label: t.nav.about, key: "1" },
@@ -40,11 +46,20 @@ const Navbar: React.FC = () => {
   }, []);
 
   const scrollToSection = (id: string) => {
+    setIsOpen(false);
+    if (location.pathname !== "/") {
+      navigate("/", { state: { scrollTo: id } });
+      return;
+    }
     const element = document.getElementById(id);
     if (!element) return;
     const top = element.getBoundingClientRect().top + window.scrollY - 56;
     window.scrollTo({ top, behavior: "smooth" });
+  };
+
+  const goToBlog = () => {
     setIsOpen(false);
+    navigate("/blog");
   };
 
   return (
@@ -53,7 +68,7 @@ const Navbar: React.FC = () => {
       style={{
         background: "#0a0a0c",
         borderBottom: "1px solid #1e293b",
-        fontFamily: '"JetBrains Mono", monospace',
+        fontFamily: MONO,
       }}
     >
       <div className="max-w-7xl mx-auto px-4">
@@ -67,7 +82,7 @@ const Navbar: React.FC = () => {
               background: "none",
               border: "none",
               cursor: "pointer",
-              fontFamily: '"JetBrains Mono", monospace',
+              fontFamily: MONO,
               padding: 0,
             }}
           >
@@ -77,7 +92,7 @@ const Navbar: React.FC = () => {
           {/* Desktop nav */}
           <div className="hidden md:flex items-center">
             {navItems.map((item) => {
-              const isActive = activeSection === item.id;
+              const isActive = !onBlog && activeSection === item.id;
               return (
                 <button
                   key={item.id}
@@ -89,14 +104,27 @@ const Navbar: React.FC = () => {
                     border: "none",
                     borderBottom: isActive ? "2px solid #00d992" : "2px solid transparent",
                     cursor: "pointer",
-                    fontFamily: '"JetBrains Mono", monospace',
+                    fontFamily: MONO,
                   }}
                 >
-                  <span style={{ color: "#475569" }}>[{item.key}]</span>{" "}
-                  {item.label}
+                  <span style={{ color: "#475569" }}>[{item.key}]</span> {item.label}
                 </button>
               );
             })}
+            <button
+              onClick={goToBlog}
+              className="px-3 py-1.5 text-xs transition-colors duration-150"
+              style={{
+                color: onBlog ? "#00d992" : "#8b949e",
+                background: "none",
+                border: "none",
+                borderBottom: onBlog ? "2px solid #00d992" : "2px solid transparent",
+                cursor: "pointer",
+                fontFamily: MONO,
+              }}
+            >
+              <span style={{ color: "#475569" }}>[6]</span> {t.nav.blog}
+            </button>
           </div>
 
           {/* Controls */}
@@ -109,7 +137,7 @@ const Navbar: React.FC = () => {
                 background: "none",
                 border: "1px solid #1e293b",
                 cursor: "pointer",
-                fontFamily: '"JetBrains Mono", monospace',
+                fontFamily: MONO,
               }}
               onMouseEnter={(e) => {
                 e.currentTarget.style.color = "#00d992";
@@ -142,12 +170,12 @@ const Navbar: React.FC = () => {
               style={{
                 background: "#0a0a0c",
                 borderColor: "#1e293b",
-                fontFamily: '"JetBrains Mono", monospace',
+                fontFamily: MONO,
               }}
             >
               <div className="flex flex-col gap-0.5 mt-8">
                 {navItems.map((item) => {
-                  const isActive = activeSection === item.id;
+                  const isActive = !onBlog && activeSection === item.id;
                   return (
                     <button
                       key={item.id}
@@ -159,14 +187,27 @@ const Navbar: React.FC = () => {
                         border: "none",
                         borderLeft: isActive ? "2px solid #00d992" : "2px solid transparent",
                         cursor: "pointer",
-                        fontFamily: '"JetBrains Mono", monospace',
+                        fontFamily: MONO,
                       }}
                     >
-                      <span style={{ color: "#475569" }}>[{item.key}]</span>{" "}
-                      {item.label}
+                      <span style={{ color: "#475569" }}>[{item.key}]</span> {item.label}
                     </button>
                   );
                 })}
+                <button
+                  onClick={goToBlog}
+                  className="text-left px-4 py-2.5 text-sm transition-colors duration-150"
+                  style={{
+                    color: onBlog ? "#00d992" : "#8b949e",
+                    background: "none",
+                    border: "none",
+                    borderLeft: onBlog ? "2px solid #00d992" : "2px solid transparent",
+                    cursor: "pointer",
+                    fontFamily: MONO,
+                  }}
+                >
+                  <span style={{ color: "#475569" }}>[6]</span> {t.nav.blog}
+                </button>
                 <div className="mt-4 px-4">
                   <button
                     onClick={() => setLanguage(language === "es" ? "en" : "es")}
@@ -176,7 +217,7 @@ const Navbar: React.FC = () => {
                       background: "none",
                       border: "1px solid #1e293b",
                       cursor: "pointer",
-                      fontFamily: '"JetBrains Mono", monospace',
+                      fontFamily: MONO,
                     }}
                   >
                     {language === "es" ? "EN" : "ES"}

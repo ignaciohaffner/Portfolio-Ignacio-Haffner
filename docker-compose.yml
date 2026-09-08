@@ -4,7 +4,11 @@ networks:
 
 services:
   portfolio:
-    build: .
+    build:
+      context: .
+      args:
+        # from .env next to this file
+        VITE_ADMIN_UIDS: ${VITE_ADMIN_UIDS:-}
     image: portfolio
     container_name: portfolio
     restart: unless-stopped

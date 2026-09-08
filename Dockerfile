@@ -3,6 +3,9 @@ WORKDIR /app
 COPY package*.json ./
 RUN npm ci
 COPY . .
+# Vite inlines VITE_* at build time; passed as a build arg from docker-compose.
+ARG VITE_ADMIN_UIDS=""
+ENV VITE_ADMIN_UIDS=$VITE_ADMIN_UIDS
 RUN npm run build
 
 FROM nginx:alpine AS runtime
