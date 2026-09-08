@@ -1,5 +1,4 @@
 import type React from "react";
-import { motion } from "framer-motion";
 import { ExternalLink } from "lucide-react";
 import { useLanguage } from "../contexts/LanguageContext";
 import translations from "../utils/translations";
@@ -50,107 +49,105 @@ const certificates: Certificate[] = [
   },
 ];
 
-const companyStyles: Record<string, { color: string; bg: string; dot: string }> = {
-  Udemy: { color: "#fb923c", bg: "rgba(249,115,22,0.1)", dot: "#f97316" },
-  "EF SET": { color: "#60a5fa", bg: "rgba(59,130,246,0.1)", dot: "#3b82f6" },
-  "LinkedIn Learning": { color: "#38bdf8", bg: "rgba(14,165,233,0.1)", dot: "#0ea5e9" },
-};
-
-const containerVariants = {
-  hidden: { opacity: 0 },
-  visible: { opacity: 1, transition: { staggerChildren: 0.08 } },
-};
-
-const rowVariants = {
-  hidden: { opacity: 0, x: -16 },
-  visible: { opacity: 1, x: 0, transition: { duration: 0.4, ease: "easeOut" } },
-};
-
 const Certificates: React.FC = () => {
   const { language } = useLanguage();
   const t = translations[language];
 
   return (
-    <div className="container mx-auto py-20" id="certificates">
-      <motion.div
-        initial={{ opacity: 0, y: 40 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true, margin: "-50px" }}
-        transition={{ duration: 0.55, ease: "easeOut" }}
-        className="space-y-8"
-      >
+    <div
+      className="container mx-auto py-20 px-4"
+      id="certificates"
+      style={{ fontFamily: '"JetBrains Mono", monospace' }}
+    >
+      <div className="space-y-8">
         {/* Section header */}
-        <div className="space-y-1">
-          <p className="text-xs font-semibold uppercase tracking-[0.22em]" style={{ color: "#60a5fa" }}>
-            — {t.certificates.title}
-          </p>
+        <div>
+          <span className="text-sm" style={{ color: "#00d992" }}>
+            $ cat certificates.json | jq
+          </span>
         </div>
 
-        {/* Card */}
-        <div
-          className="rounded-2xl overflow-hidden"
-          style={{
-            background: "rgba(15,23,42,0.7)",
-            border: "1px solid rgba(99,102,241,0.14)",
-            boxShadow: "0 4px 32px rgba(0,0,0,0.3)",
-          }}
-        >
-          <motion.div
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, margin: "-50px" }}
-            variants={containerVariants}
-            className="divide-y"
-            style={{ borderColor: "rgba(255,255,255,0.05)" }}
+        {/* Table */}
+        <div style={{ border: "1px solid #1e293b", background: "#0d1117" }}>
+          {/* Table header */}
+          <div
+            className="hidden sm:flex items-center gap-4 px-5 py-2.5"
+            style={{
+              borderBottom: "1px solid #1e293b",
+              background: "#161b22",
+            }}
           >
-            {certificates.map((cert) => {
-              const style = companyStyles[cert.company] ?? {
-                color: "#94a3b8",
-                bg: "rgba(148,163,184,0.1)",
-                dot: "#94a3b8",
-              };
-              return (
-                <motion.a
-                  key={cert.id}
-                  href={cert.url}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  variants={rowVariants}
-                  className="flex items-center justify-between gap-4 px-5 py-4 group transition-colors duration-200"
-                  style={{ borderColor: "rgba(255,255,255,0.05)" }}
-                  whileHover={{ backgroundColor: "rgba(99,102,241,0.05)" }}
+            <span className="text-xs w-28 shrink-0" style={{ color: "#475569" }}>
+              # issuer
+            </span>
+            <span className="text-xs flex-1" style={{ color: "#475569" }}>
+              # name
+            </span>
+            <span className="text-xs w-20 shrink-0 text-right" style={{ color: "#475569" }}>
+              # date
+            </span>
+          </div>
+
+          {certificates.map((cert, idx) => (
+            <a
+              key={cert.id}
+              href={cert.url}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center justify-between gap-4 px-5 py-4 group transition-colors duration-150"
+              style={{
+                borderBottom:
+                  idx < certificates.length - 1 ? "1px solid #1e293b" : "none",
+                textDecoration: "none",
+                background: "transparent",
+              }}
+              onMouseEnter={(e) =>
+                (e.currentTarget.style.background = "rgba(0,217,146,0.03)")
+              }
+              onMouseLeave={(e) =>
+                (e.currentTarget.style.background = "transparent")
+              }
+            >
+              <div className="flex items-center gap-4 min-w-0">
+                {/* Company pill */}
+                <span
+                  className="shrink-0 text-xs px-2 py-0.5 hidden sm:block"
+                  style={{
+                    background: "#1e293b",
+                    color: "#8b949e",
+                    border: "1px solid #1e293b",
+                    minWidth: "7rem",
+                    fontFamily: '"JetBrains Mono", monospace',
+                  }}
                 >
-                  <div className="flex items-center gap-4 min-w-0">
-                    {/* Company pill */}
-                    <span
-                      className="shrink-0 text-xs font-semibold px-2.5 py-0.5 rounded-full flex items-center gap-1.5"
-                      style={{ background: style.bg, color: style.color, border: `1px solid ${style.color}22` }}
-                    >
-                      <span className="w-1.5 h-1.5 rounded-full shrink-0" style={{ background: style.dot }} />
-                      {cert.company}
-                    </span>
-                    <span className="text-sm font-medium truncate" style={{ color: "#e2e8f0" }}>
-                      {cert.name}
-                    </span>
-                  </div>
-                  <div className="flex items-center gap-3 shrink-0">
-                    <span className="text-xs hidden sm:block" style={{ color: "#475569" }}>
-                      {new Date(cert.date).toLocaleDateString(
-                        language === "es" ? "es-ES" : "en-US",
-                        { year: "numeric", month: "short" }
-                      )}
-                    </span>
-                    <ExternalLink
-                      className="w-3.5 h-3.5 transition-all duration-200 opacity-0 group-hover:opacity-100 group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
-                      style={{ color: "#60a5fa" }}
-                    />
-                  </div>
-                </motion.a>
-              );
-            })}
-          </motion.div>
+                  {cert.company}
+                </span>
+                <span
+                  className="text-xs truncate"
+                  style={{ color: "#e2e8f0", fontFamily: '"JetBrains Mono", monospace' }}
+                >
+                  {cert.name}
+                </span>
+              </div>
+              <div className="flex items-center gap-3 shrink-0">
+                <span
+                  className="text-xs hidden sm:block"
+                  style={{ color: "#475569" }}
+                >
+                  {new Date(cert.date).toLocaleDateString(
+                    language === "es" ? "es-ES" : "en-US",
+                    { year: "numeric", month: "short" },
+                  )}
+                </span>
+                <ExternalLink
+                  className="w-3.5 h-3.5 opacity-0 group-hover:opacity-100 transition-opacity duration-150"
+                  style={{ color: "#00d992" }}
+                />
+              </div>
+            </a>
+          ))}
         </div>
-      </motion.div>
+      </div>
     </div>
   );
 };

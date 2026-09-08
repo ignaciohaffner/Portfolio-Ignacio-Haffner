@@ -1,4 +1,3 @@
-import { motion } from "framer-motion";
 import { FaHtml5, FaCss3Alt, FaReact, FaNode } from "react-icons/fa";
 import {
   SiExpress,
@@ -10,227 +9,144 @@ import {
 } from "react-icons/si";
 import { BiLogoMongodb, BiLogoPostgresql } from "react-icons/bi";
 import { TbBrandCSharp } from "react-icons/tb";
-import { Code2, Database, Globe, Zap, Bot } from "lucide-react";
+import { Code2, Database, Globe, Zap } from "lucide-react";
 import translations from "../utils/translations";
 import { useLanguage } from "../contexts/LanguageContext";
 
 const techStack = [
-  { Icon: SiTypescript, color: "#3b82f6", bg: "rgba(59,130,246,0.12)", label: "TypeScript" },
-  { Icon: FaHtml5, color: "#f97316", bg: "rgba(249,115,22,0.12)", label: "HTML5" },
-  { Icon: FaCss3Alt, color: "#3b82f6", bg: "rgba(59,130,246,0.12)", label: "CSS3" },
-  { Icon: FaReact, color: "#60a5fa", bg: "rgba(96,165,250,0.12)", label: "React" },
-  { Icon: FaNode, color: "#22c55e", bg: "rgba(34,197,94,0.12)", label: "Node.js" },
-  { Icon: SiExpress, color: "#fbbf24", bg: "rgba(251,191,36,0.12)", label: "Express" },
-  { Icon: SiGraphql, color: "#ec4899", bg: "rgba(236,72,153,0.12)", label: "GraphQL" },
-  { Icon: BiLogoMongodb, color: "#16a34a", bg: "rgba(22,163,74,0.12)", label: "MongoDB" },
-  { Icon: SiMysql, color: "#60a5fa", bg: "rgba(96,165,250,0.12)", label: "MySQL" },
-  { Icon: SiTailwindcss, color: "#22d3ee", bg: "rgba(34,211,238,0.12)", label: "Tailwind" },
-  { Icon: BiLogoPostgresql, color: "#3b82f6", bg: "rgba(59,130,246,0.12)", label: "PostgreSQL" },
-  { Icon: TbBrandCSharp, color: "#a855f7", bg: "rgba(168,85,247,0.12)", label: "C#" },
-  { Icon: SiDotnet, color: "#a855f7", bg: "rgba(168,85,247,0.12)", label: ".NET" },
+  { Icon: SiTypescript, color: "#8b949e", label: "TypeScript" },
+  { Icon: FaHtml5, color: "#8b949e", label: "HTML5" },
+  { Icon: FaCss3Alt, color: "#8b949e", label: "CSS3" },
+  { Icon: FaReact, color: "#8b949e", label: "React" },
+  { Icon: FaNode, color: "#8b949e", label: "Node.js" },
+  { Icon: SiExpress, color: "#8b949e", label: "Express" },
+  { Icon: SiGraphql, color: "#8b949e", label: "GraphQL" },
+  { Icon: BiLogoMongodb, color: "#8b949e", label: "MongoDB" },
+  { Icon: SiMysql, color: "#8b949e", label: "MySQL" },
+  { Icon: SiTailwindcss, color: "#8b949e", label: "Tailwind" },
+  { Icon: BiLogoPostgresql, color: "#8b949e", label: "PostgreSQL" },
+  { Icon: TbBrandCSharp, color: "#8b949e", label: "C#" },
+  { Icon: SiDotnet, color: "#8b949e", label: ".NET" },
 ];
 
 const skills = [
-  {
-    Icon: Code2,
-    titleKey: "fullStackTitle",
-    bodyKey: "fullStackBody",
-    color: "#3b82f6",
-    bg: "rgba(59,130,246,0.1)",
-    border: "rgba(59,130,246,0.35)",
-  },
-  {
-    Icon: Database,
-    titleKey: "databasesTitle",
-    bodyKey: "databasesBody",
-    color: "#22c55e",
-    bg: "rgba(34,197,94,0.1)",
-    border: "rgba(34,197,94,0.35)",
-  },
-  {
-    Icon: Globe,
-    titleKey: "webDevelopmentTitle",
-    bodyKey: "webDevelopmentBody",
-    color: "#0ea5e9",
-    bg: "rgba(14,165,233,0.1)",
-    border: "rgba(14,165,233,0.35)",
-  },
-  {
-    Icon: Zap,
-    titleKey: "continuousLearningTitle",
-    bodyKey: "continuousLearningBody",
-    color: "#f59e0b",
-    bg: "rgba(245,158,11,0.1)",
-    border: "rgba(245,158,11,0.35)",
-  },
+  { Icon: Code2, titleKey: "fullStackTitle", bodyKey: "fullStackBody" },
+  { Icon: Database, titleKey: "databasesTitle", bodyKey: "databasesBody" },
+  { Icon: Globe, titleKey: "webDevelopmentTitle", bodyKey: "webDevelopmentBody" },
+  { Icon: Zap, titleKey: "continuousLearningTitle", bodyKey: "continuousLearningBody" },
 ] as const;
-
-const containerVariants = {
-  hidden: { opacity: 0 },
-  visible: { opacity: 1, transition: { staggerChildren: 0.12, delayChildren: 0 } },
-};
-
-const slideInLeft = {
-  hidden: { opacity: 0, x: -40 },
-  visible: { opacity: 1, x: 0, transition: { duration: 0.55, ease: "easeOut" } },
-};
-
-const slideInRight = {
-  hidden: { opacity: 0, x: 40 },
-  visible: { opacity: 1, x: 0, transition: { duration: 0.55, ease: "easeOut" } },
-};
-
-const fadeUp = {
-  hidden: { opacity: 0, y: 20 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.55, ease: "easeOut" } },
-};
 
 const AboutMe = () => {
   const { language } = useLanguage();
   const t = translations[language];
 
   return (
-    <div className="container mx-auto py-20" id="aboutme">
-      <div className="space-y-14">
+    <div
+      className="container mx-auto py-20 px-4"
+      id="aboutme"
+      style={{ fontFamily: '"JetBrains Mono", monospace' }}
+    >
+      <div className="space-y-12">
+        {/* Section header */}
+        <div>
+          <span className="text-sm" style={{ color: "#00d992" }}>
+            $ cat aboutme.md
+          </span>
+        </div>
 
         {/* Bio */}
-        <motion.div
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, margin: "-50px" }}
-          variants={slideInLeft}
-          className="space-y-2"
-        >
-          <p className="text-xs font-semibold uppercase tracking-[0.22em]" style={{ color: "#60a5fa" }}>
-            — {t.about.title}
-          </p>
-          <p className="text-lg leading-relaxed max-w-2xl" style={{ color: "#94a3b8" }}>
+        <div className="space-y-2 pl-2 border-l" style={{ borderColor: "#1e293b" }}>
+          <p className="text-sm leading-relaxed max-w-2xl" style={{ color: "#e2e8f0" }}>
             {t.about.description}
           </p>
-        </motion.div>
+        </div>
 
         {/* Skills cards */}
-        <motion.div
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, margin: "-50px" }}
-          variants={containerVariants}
-          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4"
-        >
-          {skills.map(({ Icon, titleKey, bodyKey, color, bg, border }, idx) => (
-            <motion.div
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3">
+          {skills.map(({ Icon, titleKey, bodyKey }) => (
+            <div
               key={titleKey}
-              variants={idx % 2 === 0 ? slideInLeft : slideInRight}
-              className="rounded-xl p-5 transition-all duration-300 hover:translate-y-[-2px]"
-              style={{
-                background: "rgba(15,23,42,0.65)",
-                borderLeft: `3px solid ${border}`,
-                border: `1px solid rgba(255,255,255,0.07)`,
-                borderLeftColor: border,
-                boxShadow: "0 4px 20px rgba(0,0,0,0.25)",
-              }}
+              className="p-4 transition-colors duration-200"
+              style={{ border: "1px solid #1e293b", background: "#0d1117" }}
+              onMouseEnter={(e) =>
+                (e.currentTarget.style.borderColor = "rgba(0,217,146,0.3)")
+              }
+              onMouseLeave={(e) =>
+                (e.currentTarget.style.borderColor = "#1e293b")
+              }
             >
-              <div className="flex gap-3 items-start">
-                <div
-                  className="mt-0.5 shrink-0 w-8 h-8 rounded-lg flex items-center justify-center"
-                  style={{ background: bg }}
-                >
-                  <Icon className="w-4 h-4" style={{ color }} />
-                </div>
-                <div className="space-y-1">
-                  <p className="text-sm font-semibold leading-snug" style={{ color: "#f1f5f9" }}>
-                    {t.about[titleKey].replace(":", "")}
-                  </p>
-                  <p className="text-xs leading-relaxed" style={{ color: "#64748b" }}>
-                    {t.about[bodyKey]}
-                  </p>
-                </div>
+              <div className="flex gap-2 items-start mb-2">
+                <Icon className="w-4 h-4 mt-0.5 shrink-0" style={{ color: "#00d992" }} />
+                <p className="text-xs font-semibold" style={{ color: "#00d992" }}>
+                  &gt; {t.about[titleKey].replace(":", "")}
+                </p>
               </div>
-            </motion.div>
+              <p className="text-xs leading-relaxed pl-6" style={{ color: "#8b949e" }}>
+                {t.about[bodyKey]}
+              </p>
+            </div>
           ))}
-        </motion.div>
+        </div>
 
         {/* Tech stack */}
-        <motion.div
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, margin: "-50px" }}
-          variants={fadeUp}
-          className="space-y-4"
-        >
-          <p className="text-xs font-semibold uppercase tracking-[0.22em]" style={{ color: "#475569" }}>
-            {t.about.techStack}
-          </p>
-          <motion.div
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, margin: "-50px" }}
-            variants={containerVariants}
-            className="flex flex-wrap gap-2"
-          >
-            {techStack.map(({ Icon, color, bg, label }) => (
-              <motion.div
+        <div className="space-y-3">
+          <span className="text-xs" style={{ color: "#475569" }}>
+            # {t.about.techStack}
+          </span>
+          <div className="flex flex-wrap gap-2">
+            {techStack.map(({ Icon, label }) => (
+              <div
                 key={label}
-                variants={fadeUp}
-                whileHover={{ scale: 1.15, y: -2 }}
-                transition={{ type: "spring", stiffness: 350, damping: 18 }}
                 title={label}
-                className="w-10 h-10 rounded-xl flex items-center justify-center cursor-default"
-                style={{
-                  background: bg,
-                  border: "1px solid rgba(255,255,255,0.06)",
+                className="w-9 h-9 flex items-center justify-center transition-colors duration-200 cursor-default"
+                style={{ background: "#1e293b", border: "1px solid #1e293b" }}
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.borderColor = "#00d992";
+                  const icon = e.currentTarget.querySelector("svg");
+                  if (icon) (icon as HTMLElement).style.color = "#00d992";
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.borderColor = "#1e293b";
+                  const icon = e.currentTarget.querySelector("svg");
+                  if (icon) (icon as HTMLElement).style.color = "#8b949e";
                 }}
               >
-                <Icon className="text-xl" style={{ color }} />
-              </motion.div>
+                <Icon className="text-lg" style={{ color: "#8b949e", transition: "color 0.2s" }} />
+              </div>
             ))}
-          </motion.div>
-        </motion.div>
+          </div>
+        </div>
 
         {/* AI callout */}
-        <motion.div
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, margin: "-50px" }}
-          variants={slideInRight}
-          className="rounded-xl px-5 py-4 flex gap-4 items-start"
-          style={{
-            background: "rgba(59,130,246,0.04)",
-            border: "1px solid rgba(59,130,246,0.18)",
-            boxShadow: "0 0 30px rgba(59,130,246,0.04)",
-          }}
+        <div
+          className="p-4"
+          style={{ border: "1px solid #1e293b", background: "#0d1117" }}
         >
-          <div
-            className="w-9 h-9 rounded-xl flex items-center justify-center shrink-0"
-            style={{ background: "rgba(59,130,246,0.14)" }}
-          >
-            <Bot className="w-4 h-4" style={{ color: "#60a5fa" }} />
+          <p className="text-xs mb-2" style={{ color: "#00d992" }}>
+            {"// NOTE: AI-augmented development"}
+          </p>
+          <p className="text-xs font-semibold mb-1" style={{ color: "#e2e8f0" }}>
+            {t.about.aiCalloutHeading}
+          </p>
+          <p className="text-xs leading-relaxed mb-3" style={{ color: "#8b949e" }}>
+            {t.about.aiCalloutText}
+          </p>
+          <div className="flex flex-wrap gap-2">
+            {["Spec-Driven Development", "Claude Code", "Agent Orchestration"].map((tag) => (
+              <span
+                key={tag}
+                className="text-xs px-2 py-0.5"
+                style={{
+                  background: "transparent",
+                  color: "#00d992",
+                  border: "1px solid rgba(0,217,146,0.2)",
+                }}
+              >
+                {tag}
+              </span>
+            ))}
           </div>
-          <div className="space-y-2">
-            <p className="text-sm font-semibold" style={{ color: "#f1f5f9" }}>
-              {t.about.aiCalloutHeading}
-            </p>
-            <p className="text-sm leading-relaxed" style={{ color: "#94a3b8" }}>
-              {t.about.aiCalloutText}
-            </p>
-            <div className="flex flex-wrap gap-2 pt-1">
-              {["Spec-Driven Development", "Claude Code", "Agent Orchestration"].map((tag) => (
-                <span
-                  key={tag}
-                  className="text-xs font-medium px-3 py-1 rounded-full"
-                  style={{
-                    background: "rgba(59,130,246,0.1)",
-                    color: "#93c5fd",
-                    border: "1px solid rgba(59,130,246,0.22)",
-                  }}
-                >
-                  {tag}
-                </span>
-              ))}
-            </div>
-          </div>
-        </motion.div>
-
+        </div>
       </div>
     </div>
   );
