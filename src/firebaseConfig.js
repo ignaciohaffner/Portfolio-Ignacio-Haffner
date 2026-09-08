@@ -1,7 +1,7 @@
 // firebaseConfig.js
 import { initializeApp } from "firebase/app";
 import {
-  getFirestore,
+  initializeFirestore,
   doc,
   getDoc,
   getDocs,
@@ -42,7 +42,11 @@ const firebaseConfig = {
 // Inicializar Firebase
 const app = initializeApp(firebaseConfig);
 const analytics = getAnalytics(app);
-const db = getFirestore(app);
+// Auto-detect long-polling: the default WebChannel transport is blocked by some
+// networks / privacy setups / headless browsers, which left blog reads hanging.
+const db = initializeFirestore(app, {
+  experimentalAutoDetectLongPolling: true,
+});
 const auth = getAuth(app);
 const provider = new GoogleAuthProvider();
 
