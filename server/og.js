@@ -30,7 +30,8 @@ export function buildPostHead(post, opts) {
   const { siteUrl, ogLang = "es", twitterHandle = "", defaultImage } = opts;
   const lang = post.title?.[ogLang] ? ogLang : post.title?.es ? "es" : "en";
 
-  const title = `${text(post.title?.[lang])} — ${SITE_NAME}`;
+  const title = text(post.title?.[lang]);
+  const pageTitle = `${title} — ${SITE_NAME}`;
   const description = clip(text(post.excerpt?.[lang]), 200);
   const image = post.coverImage
     ? absolute(post.coverImage, siteUrl)
@@ -38,7 +39,7 @@ export function buildPostHead(post, opts) {
   const url = `${siteUrl}/blog/${post.slug}`;
 
   return [
-    `<title>${esc(title)}</title>`,
+    `<title>${esc(pageTitle)}</title>`,
     `<meta name="description" content="${esc(description)}" />`,
     `<link rel="canonical" href="${esc(url)}" />`,
     `<meta property="og:type" content="article" />`,

@@ -85,9 +85,13 @@
 .prose-blog h2::before,
 .prose-blog h3::before,
 .prose-blog h4::before {
-  content: "# ";
   color: #475569;
+  font-weight: 400;
 }
+.prose-blog h1::before { content: "# "; }
+.prose-blog h2::before { content: "## "; }
+.prose-blog h3::before { content: "### "; }
+.prose-blog h4::before { content: "#### "; }
 .prose-blog p,
 .prose-blog ul,
 .prose-blog ol,

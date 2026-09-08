@@ -21,9 +21,15 @@ const OPTS = {
 
 test("buildPostHead uses the ogLang locale", () => {
   const head = buildPostHead(SAMPLE, OPTS);
-  assert.match(head, /<meta property="og:title" content="Hola, mundo — Ignacio Haffner" \/>/);
+  assert.match(head, /<meta property="og:title" content="Hola, mundo" \/>/);
   assert.match(head, /<meta property="og:description" content="El primer post del blog\." \/>/);
   assert.match(head, /<meta property="og:url" content="https:\/\/ignaciohaffner\.com\/blog\/hola-mundo" \/>/);
+});
+
+test("buildPostHead keeps the site name only in the <title> tag", () => {
+  const head = buildPostHead(SAMPLE, OPTS);
+  assert.match(head, /<title>Hola, mundo — Ignacio Haffner<\/title>/);
+  assert.match(head, /twitter:title" content="Hola, mundo" \/>/);
 });
 
 test("buildPostHead falls back to the default image and emits twitter tags", () => {
@@ -44,7 +50,7 @@ test("buildPostHead escapes HTML in post fields", () => {
     { ...SAMPLE, title: { es: 'A <b>"x"</b> & B', en: "" } },
     OPTS,
   );
-  assert.match(head, /og:title" content="A &lt;b&gt;&quot;x&quot;&lt;\/b&gt; &amp; B — Ignacio Haffner"/);
+  assert.match(head, /og:title" content="A &lt;b&gt;&quot;x&quot;&lt;\/b&gt; &amp; B"/);
   assert.doesNotMatch(head, /<b>/);
 });
 
