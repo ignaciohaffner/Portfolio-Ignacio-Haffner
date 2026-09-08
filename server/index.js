@@ -14,7 +14,7 @@ const SITE_URL = (process.env.SITE_URL || "https://ignaciohaffner.com").replace(
 const FIREBASE_PROJECT = process.env.FIREBASE_PROJECT || "portfolio-ignaciohaffner";
 const OG_LANG = process.env.OG_LANG === "en" ? "en" : "es";
 const TWITTER_HANDLE = process.env.TWITTER_HANDLE || "";
-const DEFAULT_IMAGE = `${SITE_URL}/og.png`;
+const DEFAULT_IMAGE = `${SITE_URL}/og.jpg`;
 
 const app = express();
 app.disable("x-powered-by");

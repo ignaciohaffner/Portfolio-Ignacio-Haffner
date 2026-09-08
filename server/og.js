@@ -32,7 +32,7 @@ export function buildPostHead(post, opts) {
 
   const title = text(post.title?.[lang]);
   const pageTitle = `${title} — ${SITE_NAME}`;
-  const description = clip(text(post.excerpt?.[lang]), 200);
+  const description = clip(text(post.excerpt?.[lang]), 150);
   const image = post.coverImage
     ? absolute(post.coverImage, siteUrl)
     : defaultImage;
